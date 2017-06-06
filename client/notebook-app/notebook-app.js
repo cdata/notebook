@@ -1,6 +1,7 @@
 import { Element as PolymerElement } from '/node_modules/@polymer/polymer/polymer-element.js';
 import '/node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
 import './notebook-store.js';
+import './notebook-note.js';
 import { NoteAction } from './reducer/notes.js';
 import { ActionDispatcher } from '../common/mixin/action-dispatcher.js';
 
@@ -26,7 +27,7 @@ class NotebookApp extends ActionDispatcher(PolymerElement) {
 <ul>
   <dom-repeat items="[[state.notes]]" as="note">
     <template>
-      <li><span>[[note]]</span><button on-click="removeNote">x</button></li>
+      <notebook-note note="[[note]]"></notebook-note>
     </template>
   </dom-repeat>
 </ul>
@@ -50,11 +51,11 @@ class NotebookApp extends ActionDispatcher(PolymerElement) {
   }
 
   createNote() {
-    const note = this.$.input.value;
-
     this.dispatchAction({
       type: NoteAction.ADD,
-      note
+      note: {
+        value: this.$.input.value
+      }
     });
   }
 }

@@ -1,7 +1,7 @@
 const $ownerHost = Symbol('ownerHost');
 const $onAction = Symbol('onAction');
 
-const Store = SuperClass => class extends SuperClass {
+const ActionObserver = SuperClass => class extends SuperClass {
   get ownerHost() {
     if (this[$ownerHost] == null) {
       const parent = this.parentNode;

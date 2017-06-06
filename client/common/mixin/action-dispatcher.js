@@ -3,7 +3,8 @@ const ActionDispatcher = SuperClass => class extends SuperClass {
     this.dispatchEvent(new CustomEvent('action', {
       detail: action,
       bubbles: true,
-      cancelable: true
+      cancelable: true,
+      composed: true
     }));
   }
 };

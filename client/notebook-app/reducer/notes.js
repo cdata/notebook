@@ -11,6 +11,8 @@ const notes = (action, notes=[]) => {
         ...notes,
         action.note
       ];
+    case NoteAction.REMOVE:
+      return notes.filter(note => note !== action.note);
     default:
       return notes;
   }
